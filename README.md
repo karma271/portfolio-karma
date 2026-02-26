@@ -40,6 +40,23 @@ The site supports:
 The toggle in the header is implemented using only CSS (`:has()` and radio
 inputs); no JavaScript is required.
 
+### Tactile feedback
+
+Interactive elements (nav links, accordion headers, theme toggle, brand mark)
+have subtle press-down effects on click/tap using CSS `:active` states. All
+effects are GPU-composited transforms — no JavaScript, no extra dependencies.
+
+A single CSS custom property controls everything. In `styles/main.css`:
+
+```css
+:root {
+  --tactile: 1;   /* 1 = on, 0 = off */
+}
+```
+
+Set `--tactile: 0` to disable all tactile effects without removing any code.
+The `prefers-reduced-motion` media query also force-disables them automatically.
+
 ### Local development
 
 **Prerequisites:** Python ≥ 3.13 and [uv](https://docs.astral.sh/uv/).
