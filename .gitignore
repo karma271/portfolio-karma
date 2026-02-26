@@ -9,4 +9,14 @@ wheels/
 # Virtual environments
 .venv
 
+# Python tooling
+.python-version
+uv.lock
+
+# Planning & spec docs
+cursor-spec.md
+deploy_plan.md
+design_improvements.md
+
+# OS files
 .DS_Store
