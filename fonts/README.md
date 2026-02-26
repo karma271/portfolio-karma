@@ -1,22 +1,17 @@
 # Fonts
 
-This portfolio is configured to use two local fonts:
-
-- Atkinson Hyperlegible — for body text
-- Recursive — for headings (variable font)
+This portfolio uses **Poppins** (self-hosted, latin subset, WOFF2).
 
 ## Expected files
 
 Place the following files in this `fonts/` directory:
 
-- `atkinson-hyperlegible-latin.woff2`
-- `recursive-latin-variable.woff2`
+- `poppins-latin-400-normal.woff2`
+- `poppins-latin-500-normal.woff2`
+- `poppins-latin-600-normal.woff2`
 
-You can adapt the filenames, but if you do, update the `@font-face` declarations in `styles/main.css` accordingly.
+If you rename files, update the `@font-face` declarations in `styles/main.css` and the preload links in the templates.
 
-## Sources
+## Source
 
-- Atkinson Hyperlegible: available from the Braille Institute (SIL Open Font License).
-- Recursive: available from Google Fonts and the official Recursive repository (OFL).
-
-
+- Poppins: [Google Fonts](https://fonts.google.com/specimen/Poppins) (SIL Open Font License).

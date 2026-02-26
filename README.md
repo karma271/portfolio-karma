@@ -2,18 +2,32 @@
 
 **Stack**: HTML + CSS only (no JavaScript).
 
-This is a minimal, modern portfolio site built to highlight calm, considered work. It focuses on typography, accessibility, and small design details rather than heavy effects or dependencies.
+A minimal, modern portfolio site built to highlight calm, considered work. It
+focuses on typography, accessibility, and small design details rather than heavy
+effects or dependencies.
 
 ### Structure
 
-- `index.html` — single-page portfolio.
-- `styles/main.css` — layout, typography, and theming.
-- `fonts/` — local WOFF2 font files (see `fonts/README.md`).
-- `assets/favicon.svg` — SVG favicon used by the `<link rel="icon">` tag.
-- `assets/images/` — optional social preview image, see `assets/images/README.md`.
-- `blog/` — individual blog post pages (`blog_1.html`, `blog_2.html`, ...).
-- `templates/` — Jinja2 templates and partials used to generate the HTML.
-- `build.py` — small Python build script to render templates to static HTML.
+```
+├── templates/                       # Jinja2 source templates
+│   ├── index.html.j2                #   main page
+│   ├── blog/
+│   │   ├── _layout.html.j2          #   shared blog layout
+│   │   └── blog_*.html.j2           #   individual posts
+│   └── partials/                    #   reusable header & footer fragments
+├── styles/main.css                  # layout, typography, and theming
+├── fonts/                           # self-hosted WOFF2 files (see fonts/README.md)
+├── assets/
+│   ├── favicon.svg
+│   └── images/                      # optional social preview image
+├── blogs.json                       # blog metadata (titles, descriptions, TOC)
+├── build.py                         # renders templates → static HTML
+├── pyproject.toml                   # Python project & dependency config
+└── .github/workflows/deploy.yml     # GitHub Pages CI/CD
+```
+
+`index.html` and `blog/*.html` are **generated** by `build.py` and excluded
+from version control. Clone the repo and run the build to produce them.
 
 ### Themes
 
@@ -22,48 +36,55 @@ The site supports:
 - **Auto** — respects the system `prefers-color-scheme`.
 - **Light** — explicit light theme.
 - **Dark** — explicit dark theme.
-- **Reader** — high-comfort, text-focused theme (~72ch max width).
 
-The toggle in the header is implemented using only CSS (`:has()` and radio inputs); no JavaScript is required.
+The toggle in the header is implemented using only CSS (`:has()` and radio
+inputs); no JavaScript is required.
+
+### Local development
+
+**Prerequisites:** Python ≥ 3.13 and [uv](https://docs.astral.sh/uv/).
+
+1. Install dependencies:
+
+   ```bash
+   uv sync
+   ```
+
+2. Build the site:
+
+   ```bash
+   uv run python build.py
+   ```
+
+This renders `templates/index.html.j2` → `index.html` and each
+`templates/blog/blog_*.html.j2` → `blog/blog_*.html`. Re-run after any
+template or `blogs.json` change.
 
 ### Customization checklist
 
 - **Branding**
-  - Update the `<title>` and meta description in `index.html`.
-  - Replace "Your Name" and role text in the header and hero.
+  - Update the `<title>` and meta description in `templates/index.html.j2`.
+  - Replace name and role text in the header and hero.
+- **Content**
+  - Rewrite About, Projects, and Experience copy in `templates/index.html.j2`.
+  - Update project cards: titles, roles, years, and links.
+  - Edit blog metadata (titles, descriptions, dates) in `blogs.json`.
+  - Edit blog post content in `templates/blog/blog_*.html.j2`.
 - **Contact**
   - Set your real email in the `mailto:` link.
   - Add or adjust external links in the contact section.
-- **Content**
-  - Rewrite About, Projects, and Experience copy to match your work.
-  - Update project cards: titles, roles, years, and links.
-  - Update blog cards in the “Notes & writing” section and their corresponding
-    `blog/blog_X.html` pages (titles, dates, and body copy).
 - **Assets**
   - Add your fonts to `fonts/` and ensure filenames match `styles/main.css`.
   - Export a `social-card.png` into `assets/images/` for Open Graph previews.
 
-### Template-based build (optional but recommended)
+### Deployment
 
-To avoid repeating the header and footer across pages, the project includes a
-tiny Python + Jinja2 build step:
+The site deploys to **GitHub Pages** via a GitHub Actions workflow
+(`.github/workflows/deploy.yml`). On every push to `main`, the workflow:
 
-- Install dependencies (once):
+1. Checks out the repo.
+2. Installs Python 3.13 and Jinja2.
+3. Runs `python build.py` to generate the HTML.
+4. Uploads and deploys the result to GitHub Pages.
 
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-- Regenerate `index.html` and the blog pages from templates:
-
-  ```bash
-  python build.py
-  ```
-
-Edit the files under `templates/` (for example `templates/index.html.j2` and
-`templates/blog/blog_1.html.j2`); then run `python build.py` to update the
-corresponding `.html` files in the project root and `blog/` directory.
-
-Open `index.html` in a browser to view the site. No build step is required.
-
-
+A `CNAME` file pins the custom domain.

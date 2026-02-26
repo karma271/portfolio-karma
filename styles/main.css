@@ -19,7 +19,9 @@
 }
 
 html {
+  font-size: 100%;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -77,12 +79,14 @@ textarea {
   font-display: swap;
 }
 
+/* uncomment this when we need a 700 weight font 
 @font-face {
   font-family: "Poppins";
   src: url("../fonts/poppins-latin-700-normal.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
+*/
 
 :root {
   /* Typography scale */
@@ -100,10 +104,8 @@ textarea {
   /* Layout */
   --page-gutter: clamp(1.25rem, 3vw, 3rem);
   --page-max-width: 64rem;
-  --page-max-width-reader: 72ch;
 
   --radius-pill: 999px;
-  --radius-card: 1.25rem;
 
   --shadow-soft: 0 10px 35px rgba(15, 15, 25, 0.14);
 
@@ -249,18 +251,6 @@ dt {
 
 dd {
   margin: 0;
-}
-
- .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* ------------------------------
@@ -572,8 +562,6 @@ dd {
   margin-inline-start: auto;
 }
 
-/* (project-card styles removed – both sections now use project-accordion) */
-
 /* ------------------------------
    Project accordion
    ------------------------------ */
@@ -660,7 +648,12 @@ dd {
   position: absolute;
   background-color: var(--color-fg-weak);
   border-radius: 1px;
-  transition: transform 200ms ease, opacity 200ms ease;
+  transition: transform 200ms ease, opacity 200ms ease, background-color 150ms ease;
+}
+
+.project-accordion__header:hover .project-accordion__chevron::before,
+.project-accordion__header:hover .project-accordion__chevron::after {
+  background-color: var(--color-accent);
 }
 
 .project-accordion__chevron::before {
@@ -904,7 +897,6 @@ dd {
 .blog-article {
   max-width: var(--page-max-width);
   margin-inline: auto;
-  padding: var(--section-padding) var(--gutter);
 }
 
 .blog-article__header {
