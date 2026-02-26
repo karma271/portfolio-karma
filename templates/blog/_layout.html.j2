@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ post.title }} · Prasoon Karmacharya</title>
+    <meta
+      name="description"
+      content="{{ post.meta_description }}"
+    />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Preload primary font weight to avoid FOUT -->
+    <link
+      rel="preload"
+      href="../fonts/poppins-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/poppins-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link
+      rel="icon"
+      href="../assets/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    {% set home_root = "../" %}
+    {% include "partials/header.html" %}
+
+    <main id="main" class="site-main">
+      <article class="blog-article" aria-labelledby="post-title">
+        <header class="blog-article__header">
+          <h1 id="post-title">{{ post.title }}</h1>
+          <p class="blog-article__kicker">
+            {{ post.description }}
+          </p>
+          <p class="blog-article__meta">
+            <strong>Published:</strong> {{ post.published }} · <strong>Topics:</strong>
+            {{ post.topics }}
+          </p>
+        </header>
+
+        <div class="blog-article__grid">
+          <div class="blog-article__body">
+            {% block content %}{% endblock %}
+          </div>
+
+          {% if post.toc %}
+          <aside class="blog-article__toc" aria-label="Table of contents">
+            <nav>
+              <p class="blog-article__toc-label">In this article</p>
+              <ul class="blog-article__toc-list">
+                {% for item in post.toc %}
+                <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </aside>
+          {% endif %}
+        </div>
+      </article>
+    </main>
+
+    {% set year = post.published %}
+    {% include "partials/footer_blog.html" %}
+  </body>
+</html>

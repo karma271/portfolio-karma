@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>When your metric fights your product · Prasoon Karmacharya</title>
+    <meta
+      name="description"
+      content="A short field guide to noticing when your optimization metric is misaligned with the real outcomes you care about."
+    />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Preload primary font weight to avoid FOUT -->
+    <link
+      rel="preload"
+      href="../fonts/poppins-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/poppins-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link
+      rel="icon"
+      href="../assets/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    
+    <header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html#top" class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">
+        <span class="brand__title">Prasoon Karmacharya</span>
+        <span class="brand__subtitle">Machine Learning Scientist</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#blog">Notes</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div
+      class="theme-switch"
+      role="radiogroup"
+      aria-label="Color theme"
+    >
+      <input
+        class="theme-switch__input"
+        type="radio"
+        name="theme"
+        id="theme-light"
+        checked
+      />
+      <label class="theme-switch__option" for="theme-light">Light</label>
+
+      <input
+        class="theme-switch__input"
+        type="radio"
+        name="theme"
+        id="theme-dark"
+      />
+      <label class="theme-switch__option" for="theme-dark">Dark</label>
+    </div>
+  </div>
+</header>
+
+
+
+    <main id="main" class="site-main">
+      <article class="blog-article" aria-labelledby="post-title">
+        <header class="blog-article__header">
+          <h1 id="post-title">When your metric fights your product</h1>
+          <p class="blog-article__kicker">
+            A field guide to noticing when an optimization metric is quietly misaligned with the real outcome you care about.
+          </p>
+          <p class="blog-article__meta">
+            <strong>Published:</strong> 2025 · <strong>Topics:</strong>
+            Evaluation, product thinking
+          </p>
+        </header>
+
+        <div class="blog-article__grid">
+          <div class="blog-article__body">
+            
+          <p>
+            Many ML projects start with a metric and end with a dashboard. In
+            between, we ship a model that does better on the metric and assume
+            that must be good for the product. Sometimes that works. Sometimes
+            the metric quietly fights the thing we actually care about.
+          </p>
+          <p>
+            This note is about the second case: how to recognize misaligned
+            metrics early, and a few simple patterns I use to keep evaluation
+            and product goals in the same rough direction.
+          </p>
+
+          <h2 id="start-from-the-decision">Start from the decision, not the model</h2>
+          <p>
+            A useful question to ask at the beginning of any project is: <em>
+              what decision changes if this model is good?
+            </em>
+            If you can't answer that clearly, you're probably at risk of
+            optimizing the wrong thing.
+          </p>
+          <p>
+            Once the decision is clear, work backwards: what offline metric is
+            a reasonable stand&#8209;in for that decision? What are the obvious ways
+            it could fail? What guardrail metrics would catch those failures
+            before users do?
+          </p>
+
+          <h2 id="guardrails-as-first-class">Guardrails as first&#8209;class citizens</h2>
+          <p>
+            It's common to treat guardrails as an afterthought: we'll add them
+            to the dashboard later, once we know the main metric is moving. In
+            practice, I've found it more reliable to treat guardrails as
+            co-equal with the primary metric from the start.
+          </p>
+          <p>
+            For example, if you're optimizing click&#8209;through, you might care
+            just as much about long&#8209;term engagement, complaint rates, or some
+            measure of perceived quality. Put those metrics in the same table as
+            your primary win metric; they're part of the story, not a footnote.
+          </p>
+
+          <h2 id="tell-the-story">Tell the story in plain language</h2>
+          <p>
+            Finally, make sure someone can explain the evaluation story without
+            looking at a single chart. What changed, for whom, and how sure are
+            we? If that story sounds off, the metric probably is too.
+          </p>
+          <p>
+            The goal isn't a perfect metric. It's a metric that is honest about
+            what it captures, and a team that can recognize when the metric and
+            the product are starting to pull in different directions.
+          </p>
+
+          <p>
+            If you'd like a deeper dive into this topic, I'm always happy to
+            walk through real examples (wins and failures) in more detail.
+          </p>
+
+          </div>
+
+          
+          <aside class="blog-article__toc" aria-label="Table of contents">
+            <nav>
+              <p class="blog-article__toc-label">In this article</p>
+              <ul class="blog-article__toc-list">
+                
+                <li><a href="#start-from-the-decision">Start from the decision, not the model</a></li>
+                
+                <li><a href="#guardrails-as-first-class">Guardrails as first-class citizens</a></li>
+                
+                <li><a href="#tell-the-story">Tell the story in plain language</a></li>
+                
+              </ul>
+            </nav>
+          </aside>
+          
+        </div>
+      </article>
+    </main>
+
+    
+    <footer class="site-footer">
+  <div class="site-footer__inner">
+    <small>
+      &copy; 2025 Prasoon Karmacharya · Built with HTML &amp; CSS.
+      <a href="../index.html#blog">Back to notes</a>
+    </small>
+  </div>
+</footer>
+  </body>
+</html>

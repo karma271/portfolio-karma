@@ -1,0 +1,53 @@
+{% extends "blog/_layout.html.j2" %}
+
+{% block content %}
+          <h2> #TEST 1 </h2>
+          
+          <p>
+            Most teams don't suffer from a lack of experiments; they suffer from
+            experiments that are hard to interpret. Weeks of work lead to a
+            slide that says "looks promising, but we're not sure".
+          </p>
+          <p>
+            This note collects a few patterns I've found helpful when designing
+            experiments that lead to decisions instead of debates.
+          </p>
+
+          <h2 id="write-the-decision-memo">Write the decision memo first</h2>
+          <p>
+            Before launching, write a short paragraph that future you could paste
+            into a decision memo: what you'll do if the experiment wins, loses,
+            or is inconclusive. If you can't fill that in, something about the
+            design or the metric probably needs more work.
+          </p>
+
+          <h2 id="guardrails-and-pre-registration">Guardrails and pre-registration</h2>
+          <p>
+            Pre-registration doesn't need to be heavy. A simple checklist of
+            primary metric, guardrails, sample size, and stopping rules is often
+            enough to avoid the worst garden-of-forking-paths problems.
+          </p>
+          <p>
+            Treat guardrails as part of the success criteria: "we'll ship if the
+            primary metric improves by X and complaint rate, churn, and latency
+            stay within these bands".
+          </p>
+
+          <h2 id="make-trade-offs-explicit">Make trade-offs explicit</h2>
+          <p>
+            In real products, you rarely get a free lunch. A good experiment
+            write-up should call out the expected trade-offs in plain language:
+            who might be worse off, and by how much, even if the primary metric
+            improves.
+          </p>
+          <p>
+            The goal isn't a perfect experiment. It's a design that lets your
+            team make a clear, honest decision with the data you have.
+          </p>
+
+          <p>
+            I'm always interested in better ways to bring causal thinking into
+            day-to-day product work. If you have war stories or questions here,
+            I'd love to hear them.
+          </p>
+{% endblock %}

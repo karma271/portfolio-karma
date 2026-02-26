@@ -1,0 +1,46 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="{{ home_root }}index.html#top" class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">
+        <span class="brand__title">Prasoon Karmacharya</span>
+        <span class="brand__subtitle">Machine Learning Scientist</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        <li><a href="{{ home_root }}index.html#about">About</a></li>
+        <li><a href="{{ home_root }}index.html#projects">Projects</a></li>
+        <li><a href="{{ home_root }}index.html#blog">Notes</a></li>
+        <li><a href="{{ home_root }}index.html#experience">Experience</a></li>
+        <li><a href="{{ home_root }}index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div
+      class="theme-switch"
+      role="radiogroup"
+      aria-label="Color theme"
+    >
+      <input
+        class="theme-switch__input"
+        type="radio"
+        name="theme"
+        id="theme-light"
+        checked
+      />
+      <label class="theme-switch__option" for="theme-light">Light</label>
+
+      <input
+        class="theme-switch__input"
+        type="radio"
+        name="theme"
+        id="theme-dark"
+      />
+      <label class="theme-switch__option" for="theme-dark">Dark</label>
+    </div>
+  </div>
+</header>
+
+

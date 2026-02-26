@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prasoon Karmacharya – Machine Learning Scientist</title>
+    <meta
+      name="description"
+      content="A minimal, considered portfolio for showcasing applied machine learning, research, and data products."
+    />
+
+    <!-- SEO / Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Prasoon Karmacharya – Machine Learning Scientist"
+    />
+    <meta
+      property="og:description"
+      content="Calm, focused applied machine learning work with attention to detail, evaluation, and impact."
+    />
+    <meta
+      property="og:image"
+      content="assets/images/social-card.png"
+    />
+    <meta property="og:url" content="https://example.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Color scheme hint -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Preload primary font weight to avoid FOUT -->
+    <link
+      rel="preload"
+      href="fonts/poppins-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/poppins-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="assets/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    {% set home_root = "" %}
+    {% include "partials/header.html" %}
+
+    <main id="main" class="site-main">
+      <section
+        id="top"
+        class="hero"
+        aria-labelledby="hero-title"
+      >
+        <h1 id="hero-title">
+          Hello, I'm <span class="hero__name">Prasoon</span>
+        </h1>
+        <p class="hero__lede">
+          I build practical machine learning systems that survive contact with reality.
+        </p>
+
+        <dl class="hero-meta">
+          <div class="hero-meta__item">
+            <dt>Focus</dt>
+            <dd>Applied ML, causal inference, A.I. products</dd>
+          </div>
+          <div class="hero-meta__item">
+            <dt>Currently</dt>
+            <dd>Open to thoughtful ML &amp; data science roles</dd>
+          </div>
+          <div class="hero-meta__item">
+            <dt>Based in</dt>
+            <dd>Boston, MA | Remote-friendly</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        id="about"
+        class="section section--split"
+        aria-labelledby="about-title"
+      >
+        <div class="section__header">
+          <h2 id="about-title">About</h2>
+        </div>
+        <div class="section__body">
+          <p>
+            I work on the parts of machine learning that have to work when the paper
+            ends: turning messy, shifting data and ambiguous goals into well-posed
+            problems, robust pipelines, and models that actually get used.
+          </p>
+          <p>
+            My experience spans experimentation, causal inference, and production
+            ML systems: defining metrics, designing experiments, building features,
+            and partnering with engineers and stakeholders to ship data products
+            that move the right numbers, not just the easy ones.
+          </p>
+          <p>
+            I care about clarity: clear problem statements, clear interfaces between
+            models and product, and clear communication with non-technical partners.
+            This site is intentionally minimal – a small set of projects that show
+            how I think, not an exhaustive catalog.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="experience"
+        class="section section--split section--flipped"
+        aria-labelledby="experience-title"
+      >
+        <div class="section__header">
+          <h2 id="experience-title">Experience</h2>
+        </div>
+        <div class="section__body">
+          <ol class="timeline">
+            <li class="timeline__item">
+              <div class="timeline__meta">
+                <span class="timeline__role">Senior Machine Learning Scientist</span>
+                <span class="timeline__org">Product Company</span>
+                <span class="timeline__time">2022 – Present</span>
+              </div>
+              <p class="timeline__summary">
+                Leading applied ML work for user-facing products: defining problem
+                statements, designing experiments, and taking models from notebook
+                to production in close partnership with engineering.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <div class="timeline__meta">
+                <span class="timeline__role">Data Scientist</span>
+                <span class="timeline__org">Analytics &amp; Growth Team</span>
+                <span class="timeline__time">2019 – 2022</span>
+              </div>
+              <p class="timeline__summary">
+                Owning metrics, experimentation, and causal analysis for core
+                product surfaces, helping teams choose sensible metrics and avoid
+                being misled by noisy data.
+              </p>
+            </li>
+            <li class="timeline__item">
+              <div class="timeline__meta">
+                <span class="timeline__role">Research Assistant</span>
+                <span class="timeline__org">University Lab</span>
+                <span class="timeline__time">2015 – 2019</span>
+              </div>
+              <p class="timeline__summary">
+                Working on ML and statistics-heavy projects with faculty and peers,
+                focusing on reproducible analysis, careful evaluation, and clear
+                write-ups.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        class="section section--split"
+        aria-labelledby="projects-title"
+      >
+        <div class="section__header">
+          <h2 id="projects-title">Selected projects</h2>
+          <p class="section__kicker">
+            A few applied ML projects from the last few years. Happy to share
+            deeper write-ups, notebooks, or code samples on request.
+          </p>
+        </div>
+
+        <div class="section__body">
+        <div class="project-accordion">
+          <details class="project-accordion__item">
+            <summary class="project-accordion__header">
+              <div class="project-accordion__lead">
+                <h3 class="project-accordion__title">Signal Ledger</h3>
+                <p class="project-accordion__brief">
+                  End-to-end demand forecasting replacing spreadsheet heuristics
+                  with probabilistic forecasts and uncertainty-aware planning.
+                </p>
+              </div>
+              <span class="project-accordion__pill">Forecasting · Product impact</span>
+              <span class="project-accordion__chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="project-accordion__body">
+              <dl class="project-accordion__meta">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Machine learning scientist, tech lead</dd>
+                </div>
+                <div>
+                  <dt>Year</dt>
+                  <dd>2025</dd>
+                </div>
+                <div>
+                  <dt>Highlights</dt>
+                  <dd>Feature engineering, time-series modeling, stakeholder calibration</dd>
+                </div>
+              </dl>
+              <a class="project-accordion__link" href="#">
+                Request forecasting case study
+              </a>
+            </div>
+          </details>
+
+          <details class="project-accordion__item">
+            <summary class="project-accordion__header">
+              <div class="project-accordion__lead">
+                <h3 class="project-accordion__title">Experiment Atlas</h3>
+                <p class="project-accordion__brief">
+                  Unified experimentation framework standardizing metrics, power
+                  analysis, and guardrail checks across growth and product teams.
+                </p>
+              </div>
+              <span class="project-accordion__pill">Experimentation · Uplift</span>
+              <span class="project-accordion__chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="project-accordion__body">
+              <dl class="project-accordion__meta">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Data scientist, experimentation lead</dd>
+                </div>
+                <div>
+                  <dt>Year</dt>
+                  <dd>2023</dd>
+                </div>
+                <div>
+                  <dt>Highlights</dt>
+                  <dd>A/A tests, CUPED, standardized experiment review process</dd>
+                </div>
+              </dl>
+              <a class="project-accordion__link" href="#">
+                View experimentation notes
+              </a>
+            </div>
+          </details>
+
+          <details class="project-accordion__item">
+            <summary class="project-accordion__header">
+              <div class="project-accordion__lead">
+                <h3 class="project-accordion__title">Reader Studio</h3>
+                <p class="project-accordion__brief">
+                  Content embeddings and lightweight re-ranking powering a reading
+                  environment optimized for sustained engagement over raw click-through.
+                </p>
+              </div>
+              <span class="project-accordion__pill">NLP · Personalization</span>
+              <span class="project-accordion__chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="project-accordion__body">
+              <dl class="project-accordion__meta">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Machine Learning scientist, product partner</dd>
+                </div>
+                <div>
+                  <dt>Year</dt>
+                  <dd>2022</dd>
+                </div>
+                <div>
+                  <dt>Highlights</dt>
+                  <dd>Embeddings, offline evaluation, human-in-the-loop feedback</dd>
+                </div>
+              </dl>
+              <a class="project-accordion__link" href="#">
+                Explore NLP concept notes
+              </a>
+            </div>
+          </details>
+        </div>
+        </div>
+      </section>
+
+      <section
+        id="blog"
+        class="section section--split section--flipped"
+        aria-labelledby="blog-title"
+      >
+        <div class="section__header">
+          <h2 id="blog-title">Notes &amp; writing</h2>
+          <p class="section__kicker">
+            Occasional notes on applied machine learning, evaluation, and making
+            models behave in the real world.
+          </p>
+        </div>
+
+        <div class="section__body">
+        <div class="project-accordion">
+          {% for post in blogs %}
+          <details class="project-accordion__item">
+            <summary class="project-accordion__header">
+              <div class="project-accordion__lead">
+                <h3 class="project-accordion__title">{{ post.title }}</h3>
+                <p class="project-accordion__brief">
+                  {{ post.description }}
+                </p>
+              </div>
+              <span class="project-accordion__pill">{{ post.pill }}</span>
+              <span class="project-accordion__chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="project-accordion__body">
+              <dl class="project-accordion__meta">
+                <div>
+                  <dt>Published</dt>
+                  <dd>{{ post.published }}</dd>
+                </div>
+                <div>
+                  <dt>Length</dt>
+                  <dd>{{ post.read_time }}</dd>
+                </div>
+                <div>
+                  <dt>Topics</dt>
+                  <dd>{{ post.topics }}</dd>
+                </div>
+              </dl>
+              <a class="project-accordion__link" href="blog/{{ post.slug }}.html">
+                Read article
+              </a>
+            </div>
+          </details>
+          {% endfor %}
+        </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="section section--split"
+        aria-labelledby="contact-title"
+      >
+        <div class="section__header">
+          <h2 id="contact-title">Contact</h2>
+        </div>
+        <div class="section__body">
+          <p>
+            For roles, collaborations, or interesting ML problems, email is best.
+            A short note about the problem space, your data, and how success is
+            measured is especially helpful.
+          </p>
+          <p class="contact__email">
+            <a href="mailto:you@example.com">you@example.com</a>
+          </p>
+          <p class="contact__secondary">
+            Elsewhere: feel free to connect via GitHub, arXiv, or LinkedIn if
+            you prefer. I'm always happy to talk about evaluation, experiment
+            design, or making ML systems a little more honest.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    {% include "partials/footer_main.html" %}
+  </body>
+</html>

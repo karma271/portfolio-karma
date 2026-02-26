@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "blog_1",
+    "title": "When your metric fights your product",
+    "meta_description": "A short field guide to noticing when your optimization metric is misaligned with the real outcomes you care about.",
+    "description": "A field guide to noticing when an optimization metric is quietly misaligned with the real outcome you care about.",
+    "pill": "Evaluation · Practice",
+    "published": "2025",
+    "read_time": "~7 min read",
+    "topics": "Evaluation, product thinking",
+    "toc": [
+      {"id": "start-from-the-decision", "label": "Start from the decision, not the model"},
+      {"id": "guardrails-as-first-class", "label": "Guardrails as first-class citizens"},
+      {"id": "tell-the-story", "label": "Tell the story in plain language"}
+    ]
+  },
+  {
+    "slug": "blog_2",
+    "title": "Designing experiments you can actually believe",
+    "meta_description": "Practical notes on designing experiments in messy products, from guardrails to pre-registration.",
+    "description": "Lessons from running experiments in messy products: guardrails, pre-registration, and why celebrated uplift often misleads.",
+    "pill": "Experiments · Causality",
+    "published": "2024",
+    "read_time": "~10 min read",
+    "topics": "Experiment design, causal inference",
+    "toc": [
+      {"id": "write-the-decision-memo", "label": "Write the decision memo first"},
+      {"id": "guardrails-and-pre-registration", "label": "Guardrails and pre-registration"},
+      {"id": "make-trade-offs-explicit", "label": "Make trade-offs explicit"}
+    ]
+  },
+  {
+    "slug": "blog_3",
+    "title": "The quiet parts of an ML system",
+    "meta_description": "A tour of the unglamorous components that make production ML systems work: feature stores, data contracts, and monitoring.",
+    "description": "Feature stores, data contracts, monitoring, and the unglamorous pieces that decide whether a model survives in production.",
+    "pill": "Systems · ML in production",
+    "published": "2023",
+    "read_time": "~8 min read",
+    "topics": "Production ML, reliability",
+    "toc": [
+      {"id": "feature-definitions", "label": "Feature definitions you can read and trust"},
+      {"id": "data-contracts", "label": "Data contracts and change management"},
+      {"id": "monitoring", "label": "Monitoring more than just the score"}
+    ]
+  }
+]
