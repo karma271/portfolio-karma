@@ -161,7 +161,7 @@ textarea {
 }
 
 /* Force explicit light / dark themes when toggled */
-body:has(#theme-light:checked) {
+body:has(#theme-toggle) {
   --color-bg: #f5f5f7;
   --color-surface: #ffffff;
   --color-surface-subtle: #f0f0f4;
@@ -185,7 +185,7 @@ body:has(#theme-light:checked) {
   color-scheme: light;
 }
 
-body:has(#theme-dark:checked) {
+body:has(#theme-toggle:checked) {
   --color-bg: #050509;
   --color-surface: #0b0b13;
   --color-surface-subtle: #11111e;
@@ -420,43 +420,70 @@ dd {
 
 .theme-switch {
   display: inline-flex;
-  align-items: center;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border-subtle);
-  background-color: var(--color-surface-subtle);
-  overflow: hidden;
+  position: relative;
   margin-left: 1rem;
 }
 
 .theme-switch__input {
   position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.theme-switch__option {
-  padding: 0.25rem 0.75rem;
-  font-size: var(--step--1);
-  cursor: pointer;
-  user-select: none;
+.theme-switch__button {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-surface-subtle);
   color: var(--color-fg-weak);
-  background-color: transparent;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, transform 80ms ease;
 }
 
-.theme-switch__input:checked + .theme-switch__option {
+.theme-switch__button:hover {
   background-color: var(--color-surface);
   color: var(--color-fg);
 }
 
-.theme-switch__input:focus-visible + .theme-switch__option {
-  outline: 2px solid var(--color-outline);
-  outline-offset: -2px;
+.theme-switch__button:active {
+  transform: scale(calc(1 - 0.08 * var(--tactile)));
 }
 
-.theme-switch__option:active {
-  transform: scale(calc(1 - 0.08 * var(--tactile)));
-  transition: transform calc(50ms * var(--tactile)) ease;
+.theme-switch__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.theme-switch__icon--moon {
+  display: none;
+}
+
+.theme-switch__input:checked + .theme-switch__button {
+  background-color: var(--color-surface);
+  color: var(--color-fg);
+}
+
+.theme-switch__input:checked + .theme-switch__button .theme-switch__icon--sun {
+  display: none;
+}
+
+.theme-switch__input:checked + .theme-switch__button .theme-switch__icon--moon {
+  display: block;
+}
+
+.theme-switch__input:focus-visible + .theme-switch__button {
+  outline: 2px solid var(--color-outline);
+  outline-offset: 2px;
 }
 
 /* ------------------------------
