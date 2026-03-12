@@ -78,6 +78,21 @@ This renders `templates/index.html.j2` -> `index.html` and markdown posts from
 `content/blog/*.md` -> `blog/*.html`. Re-run after any template or markdown
 content change.
 
+### Code block syntax theme
+
+Code block syntax highlighting flavor is set in `build.py` via the `CODE_THEME`
+constant.
+
+Supported values:
+
+- `catppuccin-latte`
+- `catppuccin-frappe`
+- `catppuccin-macchiato`
+- `catppuccin-mocha`
+
+After changing `CODE_THEME`, run `uv run python build.py` to regenerate blog
+HTML.
+
 ### Customization checklist
 
 - **Branding**
