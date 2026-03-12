@@ -3,10 +3,18 @@ from pathlib import Path
 import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from pygments.formatters import HtmlFormatter
 
 ROOT = Path(__file__).parent
 TEMPLATES_DIR = ROOT / "templates"
 CONTENT_BLOG_DIR = ROOT / "content" / "blog"
+CODE_THEME = "catppuccin-mocha"
+SUPPORTED_CODE_THEMES = {
+    "catppuccin-latte",
+    "catppuccin-frappe",
+    "catppuccin-macchiato",
+    "catppuccin-mocha",
+}
 REQUIRED_FRONTMATTER_FIELDS = (
     "slug",
     "title",
@@ -26,7 +34,7 @@ def create_env() -> Environment:
     )
 
 
-def parse_markdown_post(path: Path) -> dict:
+def parse_markdown_post(path: Path, code_theme: str) -> dict:
     raw = path.read_text(encoding="utf-8")
     frontmatter: dict = {}
     body = raw
@@ -40,7 +48,22 @@ def parse_markdown_post(path: Path) -> dict:
     slug = str(frontmatter.get("slug") or path.stem)
     content_html = markdown.markdown(
         body,
-        extensions=["fenced_code", "tables", "sane_lists", "attr_list"],
+        extensions=[
+            "fenced_code",
+            "codehilite",
+            "tables",
+            "sane_lists",
+            "attr_list",
+        ],
+        extension_configs={
+            "codehilite": {
+                "guess_lang": False,
+                "use_pygments": True,
+                "pygments_style": code_theme,
+                "noclasses": False,
+                "css_class": "codehilite",
+            }
+        },
     )
 
     return {
@@ -74,13 +97,13 @@ def validate_markdown_post(post: dict, path: Path) -> None:
             )
 
 
-def load_markdown_posts() -> list[dict]:
+def load_markdown_posts(code_theme: str) -> list[dict]:
     if not CONTENT_BLOG_DIR.exists():
         return []
 
     posts: dict[str, dict] = {}
     for path in sorted(CONTENT_BLOG_DIR.glob("*.md")):
-        post = parse_markdown_post(path)
+        post = parse_markdown_post(path, code_theme)
         validate_markdown_post(post, path)
         if post["slug"] in posts:
             raise ValueError(f"Duplicate slug '{post['slug']}' in {path}")
@@ -98,17 +121,39 @@ def render_template(env: Environment, src: str, dest: str, **context) -> None:
     out_path.write_text(output, encoding="utf-8")
 
 
+def get_code_theme_css(code_theme: str) -> str:
+    """Generate CSS classes for the configured Catppuccin syntax flavor."""
+    return HtmlFormatter(
+        style=code_theme,
+        cssclass="codehilite",
+    ).get_style_defs(".codehilite")
+
+
 def main() -> None:
     print("Running build process...")
     env = create_env()
-    posts = load_markdown_posts()
+    if CODE_THEME not in SUPPORTED_CODE_THEMES:
+        choices = ", ".join(sorted(SUPPORTED_CODE_THEMES))
+        raise ValueError(
+            f"Unsupported CODE_THEME '{CODE_THEME}' in build.py. "
+            f"Use one of: {choices}"
+        )
+    code_theme = CODE_THEME
+    posts = load_markdown_posts(code_theme)
+    code_theme_css = get_code_theme_css(code_theme)
 
     render_template(env, "index.html.j2", "index.html", blogs=posts)
 
     for i, post in enumerate(posts):
         print(f"\tProcessing blog post {i+1}/{len(posts)}")
         dest = f"blog/{post['slug']}.html"
-        render_template(env, "blog/markdown_post.html.j2", dest, post=post)
+        render_template(
+            env,
+            "blog/markdown_post.html.j2",
+            dest,
+            post=post,
+            code_theme_css=code_theme_css,
+        )
 
     print("Completed build process!")
 
