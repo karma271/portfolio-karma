@@ -27,6 +27,11 @@
     />
 
     <link rel="stylesheet" href="../styles/main.css" />
+    {% if code_theme_css %}
+    <style>
+      {{ code_theme_css | safe }}
+    </style>
+    {% endif %}
     <link
       rel="icon"
       href="../assets/favicon.svg"
