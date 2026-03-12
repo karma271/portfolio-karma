@@ -24,7 +24,7 @@ jobs:
           python-version: "3.13"
 
       - name: Install dependencies
-        run: pip install jinja2
+        run: pip install jinja2 markdown pyyaml
 
       - name: Build site
         run: python build.py
