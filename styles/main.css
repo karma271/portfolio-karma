@@ -397,11 +397,14 @@ dd {
 
 .site-nav__list a {
   padding-block: 0.25rem;
+  text-decoration: none;
   transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
-.site-nav__list a:hover {
-  text-decoration-color: var(--color-accent-rule);
+.site-nav__list a:hover,
+.site-nav__list a:focus-visible {
+  color: var(--color-accent);
+  text-decoration-color: transparent;
 }
 
 .site-nav__list a:active {
@@ -914,6 +917,32 @@ dd {
 
 .contact__secondary {
   font-size: var(--step--1);
+}
+
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+}
+
+.contact__social-link:hover,
+.contact__social-link:focus-visible {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent-rule);
+}
+
+.contact__social-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--color-accent);
 }
 
 /* ------------------------------
