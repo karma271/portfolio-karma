@@ -19,20 +19,21 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v6
+      - uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.13"
+          enable-cache: true
 
       - name: Install dependencies
-        run: pip install jinja2 markdown pyyaml pygments catppuccin
+        run: uv sync --locked
 
       - name: Build site
-        run: python build.py
+        run: uv run python build.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
   deploy:
     needs: build

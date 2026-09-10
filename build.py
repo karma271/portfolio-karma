@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 
 import markdown
@@ -8,6 +9,10 @@ from pygments.formatters import HtmlFormatter
 ROOT = Path(__file__).parent
 TEMPLATES_DIR = ROOT / "templates"
 CONTENT_BLOG_DIR = ROOT / "content" / "blog"
+OUTPUT_DIR = ROOT / "_site"
+# Copied verbatim into the build output; everything else stays out of the
+# deployed site (templates, markdown sources, build tooling).
+STATIC_ASSETS = ("styles", "fonts", "assets", "CNAME")
 CODE_THEME = "catppuccin-mocha"
 SUPPORTED_CODE_THEMES = {
     "catppuccin-latte",
@@ -116,9 +121,30 @@ def render_template(env: Environment, src: str, dest: str, **context) -> None:
     template = env.get_template(src)
     output = template.render(**context)
 
-    out_path = ROOT / dest
+    out_path = OUTPUT_DIR / dest
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output, encoding="utf-8")
+
+
+def reset_output_dir() -> None:
+    """Clear stale output so removed pages don't linger in the deployed site."""
+    if OUTPUT_DIR.exists():
+        shutil.rmtree(OUTPUT_DIR)
+    OUTPUT_DIR.mkdir(parents=True)
+
+
+def copy_static_assets() -> None:
+    for name in STATIC_ASSETS:
+        src = ROOT / name
+        if not src.exists():
+            raise FileNotFoundError(f"Missing static asset '{name}' at {src}")
+
+        dest = OUTPUT_DIR / name
+        if src.is_dir():
+            # README.md files in asset dirs are authoring notes, not site content.
+            shutil.copytree(src, dest, ignore=shutil.ignore_patterns("README.md"))
+        else:
+            shutil.copy2(src, dest)
 
 
 def get_code_theme_css(code_theme: str) -> str:
@@ -142,6 +168,9 @@ def main() -> None:
     posts = load_markdown_posts(code_theme)
     code_theme_css = get_code_theme_css(code_theme)
 
+    reset_output_dir()
+    copy_static_assets()
+
     render_template(env, "index.html.j2", "index.html", blogs=posts)
 
     for i, post in enumerate(posts):
@@ -155,7 +184,7 @@ def main() -> None:
             code_theme_css=code_theme_css,
         )
 
-    print("Completed build process!")
+    print(f"Completed build process! Output in {OUTPUT_DIR.name}/")
 
 
 if __name__ == "__main__":
