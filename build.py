@@ -1,4 +1,5 @@
 import shutil
+from datetime import date
 from pathlib import Path
 
 import markdown
@@ -171,7 +172,10 @@ def main() -> None:
     reset_output_dir()
     copy_static_assets()
 
-    render_template(env, "index.html.j2", "index.html", blogs=posts)
+    build_year = date.today().year
+
+    render_template(env, "index.html.j2", "index.html", blogs=posts, build_year=build_year)
+    render_template(env, "404.html.j2", "404.html", build_year=build_year)
 
     for i, post in enumerate(posts):
         print(f"\tProcessing blog post {i+1}/{len(posts)}")
@@ -182,6 +186,7 @@ def main() -> None:
             dest,
             post=post,
             code_theme_css=code_theme_css,
+            build_year=build_year,
         )
 
     print(f"Completed build process! Output in {OUTPUT_DIR.name}/")
