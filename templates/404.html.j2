@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found · Prasoon Karmacharya</title>
+    <meta name="description" content="That page doesn't exist." />
+    <meta name="robots" content="noindex" />
+
+    <!-- Color scheme hint -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Preload primary font weight to avoid FOUT -->
+    <link
+      rel="preload"
+      href="/fonts/poppins-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/poppins-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="/assets/favicon.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    {# Served by GitHub Pages at arbitrary paths, so every URL here is
+       root-absolute rather than relative. #}
+    {% set home_root = "/" %}
+    {% include "partials/header.html" %}
+
+    <main id="main" class="site-main">
+      <section class="hero" aria-labelledby="notfound-title">
+        <h1 id="notfound-title">
+          <span class="hero__name">404</span> — page not found
+        </h1>
+        <p class="hero__lede">
+          That link doesn't lead anywhere. It may have moved, or it may never
+          have existed in the first place.
+        </p>
+
+        <dl class="hero-meta">
+          <div class="hero-meta__item">
+            <dt>Try instead</dt>
+            <dd class="notfound-links">
+              <a href="/index.html#top">Home</a> ·
+              <a href="/index.html#projects">Projects</a> ·
+              <a href="/index.html#blog">Notes</a> ·
+              <a href="/index.html#contact">Contact</a>
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    {% include "partials/footer_main.html" %}
+  </body>
+</html>
